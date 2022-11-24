@@ -14,14 +14,13 @@ csv tiedosto, jossa on sanakirjoja
 tiedostonimi = "tuotekategoriat.csv"
 
 
-def onko_tuotekategoriaa(tuote: dict, tuotteet: list):
+def onko_tuotekategoriaa(tuote: dict, valmiit_tuotteet: list):
     """
     tarkistaa, onko tuotteen 'kategoria' tiedossa
     jos ei, niin lisää se listaan
 
     """
-    for x in tuotteet:
-        pass
+    return False if tuote.osasto is None else True
 
 
 def read_csv():
@@ -35,6 +34,8 @@ def read_csv():
     for line in sisältö:
         nimi, osasto = line.split(";")
         tuotteet.append({"nimi": nimi, "osasto": osasto})
+
+    # print(tuotteet)
 
     return tuotteet
 
