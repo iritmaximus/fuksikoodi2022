@@ -4,50 +4,50 @@ kauppalista = []
 def syota_resepti():
     pass
 
-def lisaa_tuote(nimi: str): 
-"""
-Tarkista löytyykö tuote tuotelistasta. Jos ei löydy, lisää tuote tuotelistaan.
-Lisää tuote kauppalistaan
-"""
-    loytyy = False
-    for tuote in tuotteet:
-        if nimi == tuote.get("tuote"):
+def onko_tuotteissa(tuote: dict): 
+    """
+    Tarkistaa löytyykö tuote tuotelistasta.
+    """
+    loytyyko = False
+    for sanakirja in tuotteet:
+        if tuote.get("tuote") == sanakirja.get("tuote"):
             loytyy = True
-            
             break
-    if not loytyy:
-        tuote = {}
-        tuote["tuote"] = nimi
-        yksikko = input("Mikä on tuotteen yksikkö? ")
-        tuote["yksikko"] = yksikko
-        osasto = input("Miltä osastolta tuote löytyy? ")
-        tuote["osasto"] = osasto
-        tuotteet.append(tuote)
+    return loytyyko
+
+def lisaa_uusi_tuote_tuotelistaan(tuote: dict): 
+"""
+Tarkistaa löytyykö tuottesta kaikki tarvittavat tiedot.
+Jos tarvittava tieto puuttuu, kysyy käyttäjältä kyseisen tiedon.
+Lisää tuotteen tuotelistaan.
+"""
+    tarvittavat_tiedot = ["nimi", "yksikkö", "osasto"]
+    for tieto in tarvittavat_tiedot:
+        if tuote.get(tieto, None) == None:
+            tuote[tieto] = input(f"Mikä on tuotteen {tuote.get("nimi")} {tieto}? ")
+    tuotteet.append(tuote)
+        
+def lisaa_kauppalistaan(tuote: dict)
     kauppalista.append(tuote)
 
-while True:
-    print("Toiminnot:")
-    print("1: syötä yksittäinen tuote")
-    print("2: syötä resepti")
-    print("3: lopeta")
-    toiminto = input("Valitse toiminto (1/2/3): ")
-    try:
-        if int(toiminto) == 1: # yksittäinen tuote
-            tuote = input("Syötä tuote: ")
-            syota_tuote(tuote)
-        elif int(toiminto) == 2: # resepti
-            syota_resepti()
-        elif int(toiminto) == 3: # lopeta
-            break
-    except:
-        print("Kokeile uudestaan")
+def main():
+    while True:
+        print("Toiminnot:")
+        print("1: syötä yksittäinen tuote")
+        print("2: syötä resepti")
+        print("3: lopeta")
+        toiminto = input("Valitse toiminto (1/2/3): ")
+        try:
+            if int(toiminto) == 1: # yksittäinen tuote
+                tuote = input("Syötä tuote: ")
+                syota_tuote(tuote)
+            elif int(toiminto) == 2: # resepti
+                syota_resepti()
+            elif int(toiminto) == 3: # lopeta
+                break
+        except:
+            print("Kokeile uudestaan")
 
-print("kaikki tuotteet")
-for tuote in tuotteet:
-    print(tuote)
-
-print("kauppalista")
-for tuote in kauppalista:
-    print(tuote)
+main()
 
         
