@@ -1,4 +1,4 @@
-def jarjesta_lista(tuotteet: list, kauppa: list):
+def jarjesta_lista(tuotteet: list):
     kauppa = ["kuivatuotteet", "kylmätuotteet", "hevi", "pakasteet"]
     jarjastetty_lista = []
     for osasto in kauppa:
@@ -6,8 +6,7 @@ def jarjesta_lista(tuotteet: list, kauppa: list):
             if tuote["osasto"] == osasto:
                 jarjastetty_lista.append(tuote)
     return jarjastetty_lista
-   
-x = jarjesta_lista(tuotteet, kauppa)
-print(x)
-    
-    
+
+if __name__ == "__main__":
+    x = jarjesta_lista(tuotteet, kauppa)
+    print(x)
